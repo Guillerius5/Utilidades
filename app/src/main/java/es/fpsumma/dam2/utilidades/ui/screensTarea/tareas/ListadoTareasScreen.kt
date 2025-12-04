@@ -1,4 +1,4 @@
-package es.fpsumma.dam2.utilidades.ui.screens.tareas
+package es.fpsumma.dam2.utilidades.ui.screensTarea.tareas
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement

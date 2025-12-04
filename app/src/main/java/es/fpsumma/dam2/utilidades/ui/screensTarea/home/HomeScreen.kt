@@ -1,4 +1,4 @@
-package es.fpsumma.dam2.utilidades.ui.screens.home
+package es.fpsumma.dam2.utilidades.ui.screensTarea.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
