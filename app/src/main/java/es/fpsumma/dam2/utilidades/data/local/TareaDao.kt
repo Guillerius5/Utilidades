@@ -14,10 +14,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TareaDao {
 
-    // Inserta una tarea en la tabla.
-    // onConflict = IGNORE significa:
-    // si hay un conflicto (por ejemplo, mismo id), NO se inserta y no da error.
-    // suspend => se llama desde una corrutina (para no bloquear la app).
+//si hay conflicto no inserta
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(tarea: Tarea)
 
@@ -25,18 +22,15 @@ interface TareaDao {
     @Update
     suspend fun update(tarea: Tarea)
 
-    // Borra esa tarea de la BD.
+
     @Delete
     suspend fun delete(tarea: Tarea)
 
-    // Devuelve la tarea cuyo id coincida con el parámetro.
-    // :id es un parámetro que se sustituye por el valor que pasamos a la función.
-    // Devuelve Flow => si esa tarea cambia en la BD, la UI puede enterarse automáticamente.
+
     @Query("SELECT * from tareas WHERE id = :id")
     fun getTarea(id: Int): Flow<Tarea>
 
-    // Devuelve todas las tareas ordenadas por título de la A a la Z.
-    // Flow<List<Tarea>> => la lista se actualiza sola cuando se insertan/borran/actualizan tareas.
+
     @Query("SELECT * from tareas ORDER BY titulo ASC")
     fun getAllTareas(): Flow<List<Tarea>>
 }

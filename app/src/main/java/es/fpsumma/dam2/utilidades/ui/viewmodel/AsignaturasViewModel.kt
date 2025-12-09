@@ -15,28 +15,25 @@ import kotlinx.coroutines.launch
 
 class AsignaturasViewModel(app: Application): AndroidViewModel(app) {
 
-    private val db= Room.databaseBuilder(
-        app, AppDatabase::class.java, "asignaturas.db"
-    ).fallbackToDestructiveMigration(false).build()
+    private val dao = AppDatabase.getDatabase(app.applicationContext).AsignaturaDao()
 
-    private val dao = db.AsignaturaDao()
 
-    //listar tareas
-    val tareas: StateFlow<List<Asignaturas>> =
+    //listar Asignaturasa
+    val asignaturas: StateFlow<List<Asignaturas>> =
         dao.getAllAsignatura().stateIn(
             viewModelScope,
             SharingStarted.Lazily,
             emptyList()
         )
 
-   //crear tarea
+
 
     fun addAsignaturas(nombre: String, descripcion: String) = viewModelScope.launch {
         dao.insertAsignatura(Asignaturas(nombre = nombre, descripcion = descripcion))
 
     }
 
-
+    
     fun deleteAsignaturas(asignaturas: Asignaturas)= viewModelScope.launch{
         dao.deleteAsignatura(asignaturas)
     }
