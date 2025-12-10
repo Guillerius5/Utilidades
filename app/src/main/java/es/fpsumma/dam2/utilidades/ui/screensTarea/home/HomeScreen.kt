@@ -39,5 +39,15 @@ fun HomeScreen(navController: NavController) {
             }
 
         }
+
+        Button(
+            onClick = { navController.navigate(Routes.LISTADO_ASIGNATURAS) },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Listado de Asignaturas")
+        }
+
     }
-}
+
+    }
+
